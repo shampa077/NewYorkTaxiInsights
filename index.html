@@ -249,7 +249,7 @@
         //var output = "Hi hello";
         var dataUrl="Taxidata.txt";
             
-        d3.txt(dataUrl,function (data){
+        d3.csv(dataUrl,function (data){
            
             console.log(data.features);
             console.log(data.features[0].geometry.coordinates[0]+" "+data.features[0].geometry.coordinates[1]);

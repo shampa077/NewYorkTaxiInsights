@@ -251,27 +251,28 @@
             
         d3.json(dataUrl,function (data){
            
-            console.log(data);
-           console.log(data.features[0].geometry.coordinates[0]+" "+data.features[0].geometry.coordinates[1]);
+            //console.log(data);
+           
                 posValue={
-                lat: data.features[0].geometry.coordinates[1], 
-                lng: data.features[0].geometry.coordinates[0]}
+                lat: data.temp_taxi_data[0].pickup_latitude, 
+                lng: data.temp_taxi_data[0].pickup_longitude}
                 panToPlace(posValue);
                 showMarker();
             var count=0;
-            for (var eachData in data.features)
+            for (var eachData in data.temp_taxi_data)
                 {
                    // console.log(data.features[eachData]);
                     
                     var temp={
-            posValue: {lat: data.features[eachData].geometry.coordinates[1], lng:  data.features[eachData].geometry.coordinates[0]},
-            name: data.features[eachData].properties.LGA_NAME};
+            posValue: {lat: data.temp_taxi_data[eachData].pickup_latitude, lng:  data.temp_taxi_data[eachData].pickup_longitude},
+            name: data.temp_taxi_data[eachData].tpep_pickup_datetime};
             //if (count<15)
                 {
              names.push(temp.name);
-                   var  nameVal=temp.name+"---"+data.features[eachData].properties.REGION_NAME+"---"+ data.features[eachData].properties.NODE_TYPE;
+                   var  nameVal=temp.name+"---";
             allRef.push([nameVal,temp.posValue]);
-            positions.push(temp.posValue);}
+            positions.push(temp.posValue);
+            }
             console.log(temp);
                     count++;
              /*   for (var item in data.features[eachData])
@@ -286,7 +287,7 @@
         
          d3.json("Taxidata.json", function(data) {
            
-  console.log(data[0].pickup_longitude + " "+data[0].pickup_latitude);
+  console.log(data.temp_taxi_data[0].pickup_longitude + " "+data.temp_taxi_data[0].pickup_latitude);
 });
         //outputAreaRef.innerHTML = output;
             

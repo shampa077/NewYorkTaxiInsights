@@ -58,7 +58,8 @@
           var marker =null;
         var allRef=[];
     
-        var geocoder = new google.maps.Geocoder;
+        var geocoder = null;
+            
         
         // Map Initialisation callback.  Will be called when Maps API loads.
         function initMap() 
@@ -74,6 +75,7 @@
             });
             name="centred on Melbourne, Australia";
            // setLocations();
+            geocoder=new google.maps.Geocoder;
          
         }
         function setLocations()

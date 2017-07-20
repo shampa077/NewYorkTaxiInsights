@@ -247,9 +247,9 @@
         }
         //var outputAreaRef = document.getElementById("outputArea");
         //var output = "Hi hello";
-        var dataUrl="https://vicroadsopendata-vicroadsmaps.opendata.arcgis.com/datasets/c2a69622ebad42e7baaa8167daa72127_0.geojson";
+        var dataUrl="Taxidata.txt";
             
-        d3.json(dataUrl,function (data){
+        d3.txt(dataUrl,function (data){
            
             console.log(data.features);
             console.log(data.features[0].geometry.coordinates[0]+" "+data.features[0].geometry.coordinates[1]);

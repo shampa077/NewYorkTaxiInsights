@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
-        <title>Crash Data Visualisation</title>
+        <title>Newyork Taxi Data Visualisation</title>
         <style>
             #outputArea {
                 padding: .25em;
@@ -57,6 +57,8 @@
         var flightPoly=null;
           var marker =null;
         var allRef=[];
+    
+        var geocoder = new google.maps.Geocoder;
         
         // Map Initialisation callback.  Will be called when Maps API loads.
         function initMap() 
@@ -256,6 +258,19 @@
                 posValue={
                 lat: data.temp_taxi_data[0].pickup_latitude, 
                 lng: data.temp_taxi_data[0].pickup_longitude}
+            
+             
+             
+           
+             geocoder.geocode({'location': posValue}, function(results, status) {
+             if (status === 'OK') {
+                 
+                 console.log(results[1].formatted_address);
+                 console.log(results[1]);
+             }
+             }
+                 );
+            
                 panToPlace(posValue);
                 showMarker();
             var count=0;
@@ -285,10 +300,10 @@
                 
         });
         
-         d3.json("Taxidata.json", function(data) {
+         /*d3.json("Taxidata.json", function(data) {
            
   console.log(data.temp_taxi_data[0].pickup_longitude + " "+data.temp_taxi_data[0].pickup_latitude);
-});
+});*/
         //outputAreaRef.innerHTML = output;
             
         </script>

@@ -259,7 +259,7 @@
            
                 posValue={
                 lat: data.temp_taxi_data[0].pickup_latitude, 
-                lng: data.temp_taxi_data[0].pickup_longitude}
+                lng: data.temp_taxi_data[0].pickup_longitude};
             
              
              
@@ -267,12 +267,12 @@
              geocoder.geocode({'location': posValue}, function(results, status) {
              if (status === 'OK') {
                  
-                 console.log(results[1].formatted_address);
-                 console.log(results[1]);
-                 console.log("route:"+results[0].address_components[1]);
-                 console.log("neighborhood:"+results[0].address_components[2]);
-                 console.log("sublocality_level_1:"+results[0].address_components[3]);
-                 console.log("postcode:"+results[0].address_components[8]);
+                 //console.log(results[1].formatted_address);
+                 //console.log(results[1]);
+                 console.log("route:"+results[0].address_components[1].long_name);
+                 console.log("neighborhood:"+results[0].address_components[2].long_name);
+                 console.log("sublocality_level_1:"+results[0].address_components[3].long_name);
+                 console.log("postcode:"+results[0].address_components[8].long_name);
              }
              }
                  );

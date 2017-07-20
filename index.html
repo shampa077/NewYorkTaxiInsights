@@ -60,6 +60,7 @@
     
         var geocoder = null;
             
+        var jsonObject=[];
         
         // Map Initialisation callback.  Will be called when Maps API loads.
         function initMap() 
@@ -256,10 +257,14 @@
         d3.json(dataUrl,function (data){
            
             //console.log(data);
-           
+        
+            
+            
+            for(var i=0;i<3;i++)
+                {
                 posValue={
-                lat: data.temp_taxi_data[0].pickup_latitude, 
-                lng: data.temp_taxi_data[0].pickup_longitude};
+                lat: data.temp_taxi_data[i].pickup_latitude, 
+                lng: data.temp_taxi_data[i].pickup_longitude};
             
              
              
@@ -273,12 +278,15 @@
                  console.log("neighborhood:"+results[0].address_components[2].long_name);
                  console.log("sublocality_level_1:"+results[0].address_components[3].long_name);
                  console.log("postcode:"+results[0].address_components[8].long_name);
-             }
+                 
+                 jsonObject.push({route:results[0].address_components[1].long_name,neighbourhood:results[0].address_components[2].long_name,sublocality_level_1:results[0].address_components[3].long_name,postcode:results[0].address_components[8].long_name});
+                 }
              }
                  );
-            
+                }
                 panToPlace(posValue);
                 showMarker();
+                
             var count=0;
             for (var eachData in data.temp_taxi_data)
                 {
@@ -312,9 +320,40 @@
 });*/
         //outputAreaRef.innerHTML = output;
             
+             function ConvertToCSV(objArray) {
+            var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+            var str = '';
+
+            for (var i = 0; i < array.length; i++) {
+                var line = '';
+                for (var index in array[i]) {
+                    if (line != '') line += ','
+
+                    line += array[i][index];
+                }
+
+                str += line + '\r\n';
+            }
+
+            return str;
+        }
+
+            
+       var jsonObjects = JSON.stringify(jsonObject);
+
+            // Display JSON
+            $('#json').text(jsonObjects);
+
+            // Convert JSON to CSV & Display CSV
+            $('#csv').text(ConvertToCSV(jsonObjects));
+            
+            window.open("data:text/csv;charset=utf-8," + escape(csv))
         </script>
              <script async defer
   src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCWc2gcQubHUqt3q3ksgpOZMGKlOrKSvb8&callback=initMap">
     </script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="https://github.com/douglascrockford/JSON-js/raw/master/json2.js"></script>
+
     </body>
 </html>

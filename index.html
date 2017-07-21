@@ -253,8 +253,8 @@
         }
         //var outputAreaRef = document.getElementById("outputArea");
         //var output = "Hi hello";
-        var dataUrl="Taxidata.json";
-            
+        //var dataUrl="Taxidata.json";
+         var dataUrl="Taxidata.json";    
         d3.json(dataUrl,function (data){
            
             //console.log(data);
@@ -341,18 +341,19 @@
 
             
        var jsonObjects = JSON.stringify(jsonObject);
+            var txtFile = "test.txt";
+    var file = new File(txtFile,"write");
+    var str = JSON.stringify(JsonExport);
 
-            // Display JSON
-           // $('#json').text(jsonObjects);
-
-            // Convert JSON to CSV & Display CSV
+   log("opening file...");
+   file.open(); 
+   log("writing file..");
+   file.writeline(str);
+   file.close();
+ 
             
-            fs = require('fs');
-fs.writeFile('helloworld.txt', 'Hello World!', function (err) {
-    if (err) 
-        return console.log(err);
-    console.log('Hello World > helloworld.txt');
-});
+            
+            
         </script>
              <script async defer
   src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCWc2gcQubHUqt3q3ksgpOZMGKlOrKSvb8&callback=initMap">

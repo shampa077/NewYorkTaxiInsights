@@ -253,8 +253,9 @@
         }
         //var outputAreaRef = document.getElementById("outputArea");
         //var output = "Hi hello";
-        //var dataUrl="Taxidata.json";
-         var dataUrl="Taxidata.json";    
+        var dataUrl="Taxidata.json";
+    
+        // var dataUrl="https://github.com/shampa077/NewYorkTaxiInsights/Taxidata.json";    
         d3.json(dataUrl,function (data){
            
             //console.log(data);
@@ -285,6 +286,18 @@
              }
                  );
                 }
+                 
+                       var jsonObjects = JSON.stringify(jsonObject);
+            var txtFile = "test.txt";
+    var file = new File(txtFile,"write");
+    var str = JSON.stringify(JsonExport);
+
+   log("opening file...");
+   file.open(); 
+   log("writing file..");
+   file.writeline(str);
+   file.close();
+ 
                 panToPlace(posValue);
                 showMarker();
                 
@@ -340,17 +353,7 @@
         }
 
             
-       var jsonObjects = JSON.stringify(jsonObject);
-            var txtFile = "test.txt";
-    var file = new File(txtFile,"write");
-    var str = JSON.stringify(JsonExport);
 
-   log("opening file...");
-   file.open(); 
-   log("writing file..");
-   file.writeline(str);
-   file.close();
- 
             
             
             
